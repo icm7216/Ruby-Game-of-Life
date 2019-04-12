@@ -1,0 +1,43 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "run cmd",
+      "type": "shell",
+      "command": "rake run",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "focus": true
+      }
+    },
+    {
+      "label": "run mintty",
+      "type": "shell",
+      "command": "c:\\msys64\\msys2_shell.cmd",
+      "args": [
+        {
+          "value": "-here -c \"rake run; read -p\"Hit!Enter-key\"\"",
+          "quoting": "escape"
+        }],
+      "problemMatcher": [],
+      "presentation": {
+        "focus": true
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "rake test",
+      "problemMatcher": [],
+      "presentation": {
+        "focus": true
+      }
+    }
+  ]
+}
