@@ -6,3 +6,4 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
 gem "rake"
 gem "test-unit", "-> 3.3.0"
+gem "curses"
