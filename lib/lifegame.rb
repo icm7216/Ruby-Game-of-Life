@@ -14,7 +14,7 @@ class Lifegame
   ALIVE = 1
   DEAD = 0
   # Display character
-  ON = "\e[30;42m[]\e[0m"   # alive character
+  ON = "[]"                 # alive character
   OFF = "  "                # dead character
 
   def initialize(width, height)
