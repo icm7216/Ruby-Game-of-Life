@@ -17,6 +17,14 @@ If you want to install a dependency library
 $ bundle install
 ```
 
+# Key command
+
+*   Start: `x` or `X`
+*   Pause: `p` or `P`
+*   Next : `n` or `N` or `(space key)`
+*   Reset: `r` or `R`
+*   Quit : `q` or `Q`
+
 
 # Thanks
 
