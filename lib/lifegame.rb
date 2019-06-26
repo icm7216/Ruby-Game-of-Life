@@ -27,6 +27,44 @@ class Lifegame
     @step = 0
   end
 
+  def to_s
+    each_row(@board) {|row, cell| cell == ALIVE ? ON : OFF }
+  end
+  
+  def work_status
+    each_row(@work) {|row, cell| cell.to_s + "." }
+  end
+  
+  def board_status
+    each_row(@board) {|row, cell| cell.to_s + "." }
+  end
+
+  def cur_alive
+    @board.inject(:+).inject(:+)
+  end
+
+  def random
+    @no_change = 0
+    @step = 0
+    scan_cell {|y, x| @board[y][x] = rand(2) if rand(3) == 0 }
+  end
+
+  def update
+    convolution_board
+    scan_cell do |y, x|
+      if (@work[y][x] == 3) || ((@work[y][x] == 2) && (@board[y][x] == 1)) 
+        @board[y][x] = ALIVE
+      else
+        @board[y][x] = DEAD
+      end
+    end
+    (@pre_alive == cur_alive) ? @no_change += 1 : @no_change = 0
+    @pre_alive = cur_alive
+    @step += 1
+  end
+
+  private
+
   def zeros
     ([[0] * @width] * @height).map(&:clone)
   end
@@ -68,41 +106,5 @@ class Lifegame
       str += "\n"
     end
     str 
-  end
-
-  def to_s
-    each_row(@board) {|row, cell| cell == ALIVE ? ON : OFF }
-  end
-  
-  def work_status
-    each_row(@work) {|row, cell| cell.to_s + "." }
-  end
-  
-  def board_status
-    each_row(@board) {|row, cell| cell.to_s + "." }
-  end
-
-  def cur_alive
-    @board.inject(:+).inject(:+)
-  end
-
-  def random
-    @no_change = 0
-    @step = 0
-    scan_cell {|y, x| @board[y][x] = rand(2) if rand(3) == 0 }
-  end
-
-  def update
-    convolution_board
-    scan_cell do |y, x|
-      if (@work[y][x] == 3) || ((@work[y][x] == 2) && (@board[y][x] == 1)) 
-        @board[y][x] = ALIVE
-      else
-        @board[y][x] = DEAD
-      end
-    end
-    (@pre_alive == cur_alive) ? @no_change += 1 : @no_change = 0
-    @pre_alive = cur_alive
-    @step += 1
   end
 end

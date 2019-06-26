@@ -21,8 +21,10 @@ class TestLifegame < Test::Unit::TestCase
 
     test '#scan_cell' do
       w = []
-      @life.scan_cell(0, 0, 3, 4) do |y, x|
-        w << [y, x]
+      @life.instance_eval do
+        scan_cell(0, 0, 3, 4) do |y, x|
+          w << [y, x]
+        end
       end
       assert_equal w, [
         [0, 0], [0, 1], [0, 2], [0, 3],
@@ -39,7 +41,7 @@ class TestLifegame < Test::Unit::TestCase
         [0, 1, 1, 1, 0], 
         [0, 0, 0, 0, 0]
       ]
-      assert_equal @life.convolution(2, 2), 6
+      assert_equal @life.instance_eval{ convolution(2, 2) }, 6
     end
 
     test '#convolution_board' do
@@ -50,7 +52,7 @@ class TestLifegame < Test::Unit::TestCase
         [0, 1, 1, 1, 0], 
         [0, 0, 0, 0, 0]
       ]
-      @life.convolution_board
+      @life.instance_eval{ convolution_board }
       assert_equal @life.work_status, (
         "1.2.3.2.1.\n" + 
         "1.2.3.2.1.\n" + 
