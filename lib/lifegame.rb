@@ -32,7 +32,7 @@ class Lifegame
   end
 
   def scan_cell(y = 0, x = 0, height = @height, width = @width, &block)
-    return to_enum(:scan_each_cell) unless block_given?
+    return to_enum(:scan_cell) unless block_given?
     (y...height).each do |_y|
       (x...width).each do |_x|
         block.call(_y, _x)
